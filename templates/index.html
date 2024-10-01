@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Text</title>
+</head>
+<body>
+    <h1>Upload your text file or enter text</h1>
+    <form action="/chat" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <textarea name="text" placeholder="Or enter text here"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

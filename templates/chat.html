@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Chat with the Model</h1>
+    <form id="questionForm">
+        <input type="text" id="question" placeholder="Ask your question" required>
+        <input type="hidden" id="text" value="{{ text }}">
+        <button type="submit">Ask</button>
+    </form>
+    <div id="answers"></div>
+
+    <script>
+        $('#questionForm').on('submit', function(e) {
+            e.preventDefault();
+            const question = $('#question').val();
+            const text = $('#text').val();
+
+            $.post('/ask', { question: question, text: text }, function(data) {
+                $('#answers').append(`<p><strong>Q:</strong> ${question}</p><p><strong>A:</strong> ${data.answer}</p>`);
+                $('#question').val('');
+            }).fail(function() {
+                alert('An error occurred. Please try again.');
+            });
+        });
+    </script>
+</body>
+</html>
